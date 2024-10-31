@@ -1,7 +1,16 @@
+using Email.Services.Messaging;
+using Email.Services.Processor.Extensions;
+using Email.Services.Processor.Messaging;
+using Email.Services.Processor.Models;
+using Email.Services.Processor.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
+builder.Services.Configure<RabbitMqOptions>(builder.Configuration.GetSection("RabbitMQ"));
+builder.Services.Configure<OutlookDetails>(builder.Configuration.GetSection("OutlookCredentials"));
+builder.Services.AddSingleton<IRabbitMqConsumer, RabbitMqConsumer>();
+builder.Services.AddSingleton<IEmailSenderService, EmailSenderService>();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -21,5 +30,5 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
-
+app.UseRabbitMqConsumer();
 app.Run();

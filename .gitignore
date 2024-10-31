@@ -48,3 +48,5 @@ coverage/
 # Visual Studio Code workspace file
 .vscode/
 *.vsidx
+Email.Services/.vs/Email.Services/config/applicationhost.config
+*.v2
