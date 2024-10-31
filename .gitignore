@@ -50,3 +50,4 @@ coverage/
 *.vsidx
 Email.Services/.vs/Email.Services/config/applicationhost.config
 *.v2
+*.bin
