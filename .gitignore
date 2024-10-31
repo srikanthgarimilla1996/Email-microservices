@@ -1,0 +1,50 @@
+*.cache
+# Ignore build outputs and artifacts
+bin/
+obj/
+*.dll
+*.exe
+*.pdb
+*.app
+*.ipa
+*.dSYM
+*.js.map
+
+# User-specific files
+.vscode/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# Logs
+*.log
+
+# Resharper files
+_ReSharper*/
+*.DotSettings.user
+
+# StyleCop
+StyleCopReport.xml
+
+# Mac-specific files
+.DS_Store
+*.DS_Store
+
+# System files
+Thumbs.db
+desktop.ini
+
+# Node modules
+node_modules/
+
+# Angular generated files (if you have an Angular front end in the same repo)
+dist/
+coverage/
+
+# Visual Studio Code workspace file
+.vscode/
+*.vsidx
