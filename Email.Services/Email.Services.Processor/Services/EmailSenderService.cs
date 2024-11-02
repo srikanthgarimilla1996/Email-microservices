@@ -28,7 +28,7 @@ namespace Email.Services.Processor.Services
 
             var builder = new BodyBuilder
             {
-                HtmlBody = $"This is a test email sent by email service. Please ignore this {message}"
+                HtmlBody = $"{message}"
             };
 
             email.Body = builder.ToMessageBody();
