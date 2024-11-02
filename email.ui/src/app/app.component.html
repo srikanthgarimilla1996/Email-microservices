@@ -1,26 +1,20 @@
-<div class="centered-container">
-  <div class="box">
-    <div><b style="color: black;">Users List</b></div>
-      <dx-tag-box #usersBox
-      [valueExpr]="'id'"
-      [displayExpr]="'userName'"
-      width="30rem"
-      placeholder="Select a user..."
-      [showClearButton]="true"
-      [dataSource]="users"
-      [searchEnabled]="true">
-      <div *dxTemplate="let user of 'content'">
-        <div>{{ user?.userName }}</div>
-     </div>
-      </dx-tag-box>
-    <br>
-    <div style="color: black;"><b>Message</b></div>
-    <dx-text-area #userMessage width="30rem" height="15rem"></dx-text-area>
-    <br>
-    <dx-button stylingMode="contained"
-    text="Send Email"
-    type="default"
-    [width]="120"
-    (onClick)="sendEmail($event)"></dx-button>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand">Email Sender</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+      aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" [ngClass]="{'active': activeLink === 'sendEmail'}" href="/sendEmail" (click)="setActive('sendEmail')">Send Email</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [ngClass]="{'active': activeLink === 'logs'}" href="/view-logs"(click)="setActive('logs')">View Logs</a>
+        </li>
+      </ul>
+    </div>
   </div>
-</div>
+</nav>
+<router-outlet />

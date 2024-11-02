@@ -48,7 +48,12 @@ namespace Email.Services.Processor.Messaging
 
         private void ProcessMessage(string message)
         {
-            var data = JsonSerializer.Deserialize<SendEmailDto>(message);
+            var options = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            };
+            var data = JsonSerializer.Deserialize<SendEmailDto>(message,options);
+            Console.WriteLine(data);
             _emailSenderService.SendEmail(data.Message,data.Users);
         }
         public void Stop()
