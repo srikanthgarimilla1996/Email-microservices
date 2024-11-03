@@ -3,8 +3,20 @@
   "WorkspaceRootPath": "D:\\Email-microservices\\Email.Services\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{7FBEE530-E439-49A6-9707-9262E3D1D658}|Email.Services.Processor\\Email.Services.Processor.csproj|d:\\email-microservices\\email.services\\email.services.processor\\services\\emailsenderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7FBEE530-E439-49A6-9707-9262E3D1D658}|Email.Services.Processor\\Email.Services.Processor.csproj|solutionrelative:email.services.processor\\services\\emailsenderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7FBEE530-E439-49A6-9707-9262E3D1D658}|Email.Services.Processor\\Email.Services.Processor.csproj|d:\\email-microservices\\email.services\\email.services.processor\\controllers\\logscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7FBEE530-E439-49A6-9707-9262E3D1D658}|Email.Services.Processor\\Email.Services.Processor.csproj|solutionrelative:email.services.processor\\controllers\\logscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7FBEE530-E439-49A6-9707-9262E3D1D658}|Email.Services.Processor\\Email.Services.Processor.csproj|d:\\email-microservices\\email.services\\email.services.processor\\services\\loggerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7FBEE530-E439-49A6-9707-9262E3D1D658}|Email.Services.Processor\\Email.Services.Processor.csproj|solutionrelative:email.services.processor\\services\\loggerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7FBEE530-E439-49A6-9707-9262E3D1D658}|Email.Services.Processor\\Email.Services.Processor.csproj|d:\\email-microservices\\email.services\\email.services.processor\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7FBEE530-E439-49A6-9707-9262E3D1D658}|Email.Services.Processor\\Email.Services.Processor.csproj|solutionrelative:email.services.processor\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7FBEE530-E439-49A6-9707-9262E3D1D658}|Email.Services.Processor\\Email.Services.Processor.csproj|d:\\email-microservices\\email.services\\email.services.processor\\messaging\\rabbitmqconsumer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7FBEE530-E439-49A6-9707-9262E3D1D658}|Email.Services.Processor\\Email.Services.Processor.csproj|solutionrelative:email.services.processor\\messaging\\rabbitmqconsumer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -19,14 +31,53 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "EmailSenderService.cs",
-              "DocumentMoniker": "D:\\Email-microservices\\Email.Services\\Email.Services.Processor\\Services\\EmailSenderService.cs",
-              "RelativeDocumentMoniker": "Email.Services.Processor\\Services\\EmailSenderService.cs",
-              "ToolTip": "D:\\Email-microservices\\Email.Services\\Email.Services.Processor\\Services\\EmailSenderService.cs",
-              "RelativeToolTip": "Email.Services.Processor\\Services\\EmailSenderService.cs",
-              "ViewState": "AQIAAC0AAAAAAAAAAAAIwDkAAAAuAAAA",
+              "Title": "LogsController.cs",
+              "DocumentMoniker": "D:\\Email-microservices\\Email.Services\\Email.Services.Processor\\Controllers\\LogsController.cs",
+              "RelativeDocumentMoniker": "Email.Services.Processor\\Controllers\\LogsController.cs",
+              "ToolTip": "D:\\Email-microservices\\Email.Services\\Email.Services.Processor\\Controllers\\LogsController.cs",
+              "RelativeToolTip": "Email.Services.Processor\\Controllers\\LogsController.cs",
+              "ViewState": "AQIAAAsAAAAAAAAAAAA/wBoAAABZAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-02T07:35:51.514Z",
+              "WhenOpened": "2024-11-03T04:02:02.232Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "RabbitMqConsumer.cs",
+              "DocumentMoniker": "D:\\Email-microservices\\Email.Services\\Email.Services.Processor\\Messaging\\RabbitMqConsumer.cs",
+              "RelativeDocumentMoniker": "Email.Services.Processor\\Messaging\\RabbitMqConsumer.cs",
+              "ToolTip": "D:\\Email-microservices\\Email.Services\\Email.Services.Processor\\Messaging\\RabbitMqConsumer.cs",
+              "RelativeToolTip": "Email.Services.Processor\\Messaging\\RabbitMqConsumer.cs",
+              "ViewState": "AQIAABcAAAAAAAAAAAAQwDgAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-03T03:51:27.187Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Email-microservices\\Email.Services\\Email.Services.Processor\\Program.cs",
+              "RelativeDocumentMoniker": "Email.Services.Processor\\Program.cs",
+              "ToolTip": "D:\\Email-microservices\\Email.Services\\Email.Services.Processor\\Program.cs",
+              "RelativeToolTip": "Email.Services.Processor\\Program.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAAA8AAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-03T03:45:37.234Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "LoggerService.cs",
+              "DocumentMoniker": "D:\\Email-microservices\\Email.Services\\Email.Services.Processor\\Services\\LoggerService.cs",
+              "RelativeDocumentMoniker": "Email.Services.Processor\\Services\\LoggerService.cs",
+              "ToolTip": "D:\\Email-microservices\\Email.Services\\Email.Services.Processor\\Services\\LoggerService.cs",
+              "RelativeToolTip": "Email.Services.Processor\\Services\\LoggerService.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAABwAAAA6AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-03T03:35:42.868Z",
               "EditorCaption": ""
             }
           ]

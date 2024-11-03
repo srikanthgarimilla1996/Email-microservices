@@ -24,7 +24,7 @@ namespace Email.Services.Processor.Controllers
         {
             try
             {
-                IEnumerable<Logs> LogsList = await _db.Logs.ToListAsync();
+                IEnumerable<Logs> LogsList = await _db.Logs.OrderByDescending(log=>log.Id).ToListAsync();
                 var logs = _mapper.Map<IEnumerable<LogsDto>>(LogsList);
                 return logs;
 

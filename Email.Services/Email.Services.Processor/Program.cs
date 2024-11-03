@@ -7,6 +7,7 @@ using Email.Services.Processor.Models;
 using Email.Services.Processor.Services;
 using Microsoft.EntityFrameworkCore;
 using Email.Services.Processor;
+using Email.Services.Processor.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 var myAllowSpecificOrigins = "_myAllowSpecificOrigins";
@@ -15,7 +16,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: myAllowSpecificOrigins, policy =>
     {
-        policy.WithOrigins("*").AllowAnyHeader().AllowAnyMethod();
+        policy.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod().AllowCredentials();
     });
 });
 builder.Services.AddDbContext<AppDbContext>(option =>
@@ -35,6 +36,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddSignalR();
 
 var app = builder.Build();
 
@@ -52,6 +54,7 @@ app.UseCors(myAllowSpecificOrigins);
 app.MapControllers();
 ApplyMigration();
 app.UseRabbitMqConsumer();
+app.MapHub<LogsHub>("/logsHub");
 app.Run();
 
 void ApplyMigration()

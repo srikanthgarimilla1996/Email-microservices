@@ -4,6 +4,7 @@ import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-quartz.css';
 import { ColDef } from 'ag-grid-community';
 import { AppService } from '../../app.service';
+import * as signalR from '@microsoft/signalr';
 
 @Component({
   selector: 'app-view-logs',
@@ -14,6 +15,7 @@ import { AppService } from '../../app.service';
 })
 export class ViewLogsComponent implements OnInit{
   rowData:any;
+  private hubConnection!:signalR.HubConnection;
   colDefs:ColDef[]=[
     {
       field:'message',
@@ -48,11 +50,31 @@ export class ViewLogsComponent implements OnInit{
   }
   ngOnInit(): void {
     this.getLogs();
+    this.establishSignalRConnection();
   }
 
   getLogs() {
     this.appService.getDatabaseLogs().subscribe((res:any)=>{
       this.rowData = res;
     });
+  }
+
+  establishSignalRConnection() {
+    //Establish signalR Connection
+    this.hubConnection = new signalR.HubConnectionBuilder().withUrl('https://localhost:7245/logsHub').build();
+
+    // Start the connection and handle new data
+    this.hubConnection.start().then(()=>{
+      console.log('signalR Connection established');
+
+      // Listen for receive event
+      this.hubConnection.on('RecieveLog',(log:any)=>{
+        console.log('New log Received:',log);
+
+        //Update grid data with new log
+        //this.rowData = [log, ...this.rowData];
+        this.getLogs();
+      })
+    }).catch(err => console.error('Error in establishing signalR Connection:',err));
   }
 }

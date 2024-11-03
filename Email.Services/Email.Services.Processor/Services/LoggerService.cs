@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using Email.Services.Processor.Data;
+using Email.Services.Processor.Hubs;
 using Email.Services.Processor.Models;
 using Email.Services.Processor.Models.Dto;
+using Microsoft.AspNetCore.SignalR;
 
 namespace Email.Services.Processor.Services
 {
@@ -9,10 +11,12 @@ namespace Email.Services.Processor.Services
     {
         private readonly IServiceScopeFactory _serviceScopeFactory;
         private IMapper _mapper;
-        public LoggerService(IServiceScopeFactory serviceScopeFactory,IMapper mapper)
+        private readonly IHubContext<LogsHub> _hubContext;
+        public LoggerService(IServiceScopeFactory serviceScopeFactory,IMapper mapper, IHubContext<LogsHub> hubContext)
         {
             _serviceScopeFactory = serviceScopeFactory;
             _mapper = mapper;
+            _hubContext = hubContext;
         }
 
         public void AddLogToDatabase(LogsDto logsDto)
@@ -25,6 +29,9 @@ namespace Email.Services.Processor.Services
                     Logs obj = _mapper.Map<Logs>(logsDto);
                     dbContext.Logs.Add(obj);
                     dbContext.SaveChanges();
+
+                    //Notify all connected clients
+                    _hubContext.Clients.All.SendAsync("RecieveLog", logsDto);
                 }
             }
             catch (Exception ex)
