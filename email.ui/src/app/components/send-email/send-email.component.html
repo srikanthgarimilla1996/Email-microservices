@@ -1,0 +1,26 @@
+<div class="centered-container">
+    <div class="box">
+      <div><b style="color: black;">Users List</b></div>
+        <dx-tag-box #usersBox
+        [valueExpr]="'id'"
+        [displayExpr]="'userName'"
+        width="30rem"
+        placeholder="Select a user..."
+        [showClearButton]="true"
+        [dataSource]="users"
+        [searchEnabled]="true">
+        <div *dxTemplate="let user of 'content'">
+          <div>{{ user?.userName }}</div>
+       </div>
+        </dx-tag-box>
+      <br>
+      <div style="color: black;"><b>Message</b></div>
+      <dx-text-area #userMessage width="30rem" height="15rem"></dx-text-area>
+      <br>
+      <dx-button stylingMode="contained"
+      text="Send Email"
+      type="default"
+      [width]="120"
+      (onClick)="sendEmail($event)"></dx-button>
+    </div>
+  </div>

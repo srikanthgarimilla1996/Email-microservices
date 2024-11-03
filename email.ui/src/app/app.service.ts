@@ -7,6 +7,7 @@ import { HttpClient } from "@angular/common/http";
 })
 export class AppService{
     private usersUrl = 'https://localhost:7240/api/Users';
+    private logsUrl = 'https://localhost:7245/api/Logs';
     constructor(private http:HttpClient){
 
     }
@@ -17,5 +18,9 @@ export class AppService{
 
     sendEmailToUsers(obj:any):Observable<any> {
         return this.http.put(this.usersUrl+'/sendEmail',obj);
+    }
+
+    getDatabaseLogs():Observable<any> {
+        return this.http.get<any>(this.logsUrl);
     }
 }

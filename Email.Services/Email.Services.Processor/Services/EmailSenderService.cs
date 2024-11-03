@@ -11,34 +11,62 @@ namespace Email.Services.Processor.Services
     public class EmailSenderService : IEmailSenderService
     {
         private readonly OutlookDetails _outlookDetails;
-        public EmailSenderService(IOptions<OutlookDetails> options)
+        private readonly ILoggerService _loggerService;
+        public EmailSenderService(IOptions<OutlookDetails> options, ILoggerService loggerService)
         {
             _outlookDetails = options.Value;
+            _loggerService = loggerService;
         }
         public async void SendEmail(string message, List<UserDto> UsersList)
         {
-            var email = new MimeMessage
+            try
             {
-                Sender = MailboxAddress.Parse(_outlookDetails.UserName),
-                Subject = "Testing rabbitmq message queue - please ignore"
-            };
+                var email = new MimeMessage
+                {
+                    Sender = MailboxAddress.Parse(_outlookDetails.UserName),
+                    Subject = "Testing rabbitmq message queue - please ignore"
+                };
 
-            email.To.AddRange(UsersList.Where(us => !string.IsNullOrEmpty(us.Email))
-                .Select(us => MailboxAddress.Parse(us.Email)));
+                email.To.AddRange(UsersList.Where(us => !string.IsNullOrEmpty(us.Email))
+                    .Select(us => MailboxAddress.Parse(us.Email)));
 
-            var builder = new BodyBuilder
+                var builder = new BodyBuilder
+                {
+                    HtmlBody = $"{message}"
+                };
+
+                email.Body = builder.ToMessageBody();
+
+                using var smtp = new MailKit.Net.Smtp.SmtpClient();
+                smtp.Connect(_outlookDetails.Host, _outlookDetails.Port, MailKit.Security.SecureSocketOptions.StartTls);
+                var decryptedPassword = Decrypt(_outlookDetails.Password, _outlookDetails.EncString);
+                smtp.Authenticate(_outlookDetails.UserName, decryptedPassword);
+                await smtp.SendAsync(email);
+                smtp.Disconnect(true);
+                LogsDto logDto = new LogsDto()
+                {
+                    message = message,
+                    users = string.Join(", ", UsersList.Select(u => u.UserName)),
+                    LogLevel = "Info",
+                    DateTime = DateTime.UtcNow,
+                    exception = ""
+                };
+                _loggerService.AddLogToDatabase(logDto);
+            }
+            catch(Exception ex) 
             {
-                HtmlBody = $"{message}"
-            };
-
-            email.Body = builder.ToMessageBody();
-
-            using var smtp = new MailKit.Net.Smtp.SmtpClient();
-            smtp.Connect(_outlookDetails.Host, _outlookDetails.Port, MailKit.Security.SecureSocketOptions.StartTls);
-            var decryptedPassword = Decrypt(_outlookDetails.Password, _outlookDetails.EncString);
-            smtp.Authenticate(_outlookDetails.UserName, decryptedPassword);
-            await smtp.SendAsync(email);
-            smtp.Disconnect(true);
+                LogsDto logDto = new LogsDto()
+                {
+                    message = message,
+                    users = string.Join(", ", UsersList.Select(u => u.UserName)),
+                    LogLevel = "Error",
+                    DateTime = DateTime.UtcNow,
+                    exception = ex.Message.ToString()
+                };
+                _loggerService.AddLogToDatabase(logDto);
+            }
+           
+            
         }
 
         public static string Decrypt(string input, string key)
