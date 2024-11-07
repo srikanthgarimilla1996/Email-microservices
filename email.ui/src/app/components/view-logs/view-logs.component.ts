@@ -61,8 +61,8 @@ export class ViewLogsComponent implements OnInit{
 
   establishSignalRConnection() {
     //Establish signalR Connection
-    this.hubConnection = new signalR.HubConnectionBuilder().withUrl('https://localhost:7245/logsHub').build();
-
+    this.hubConnection = new signalR.HubConnectionBuilder().withUrl(this.appService.url+'logsHub',{withCredentials:true}).build();
+    console.log(this.hubConnection);
     // Start the connection and handle new data
     this.hubConnection.start().then(()=>{
       console.log('signalR Connection established');
