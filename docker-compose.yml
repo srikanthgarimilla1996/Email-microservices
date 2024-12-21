@@ -1,0 +1,60 @@
+version: '3.9'
+services:
+  gateway:
+    build:
+      context: ./Email.Services/Email.Services.Gateway
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+
+  api:
+    build:
+      context: ./Email.Services
+      dockerfile: Email.Services.API/Dockerfile
+    ports:
+      - "8081:80"
+    environment:
+      - ConnectionStrings__DefaultConnection=Server=sql-api;Database=ApiDb;User Id=sa;Password=admin@123;
+
+  processor:
+    build:
+      context: ./Email.Services
+      dockerfile: Email.Services.Processor/Dockerfile
+    ports:
+    - "8082:80"
+    depends_on:
+      - rabbitmq
+    environment:
+      - ConnectionStrings__DefaultConnection=Server=sql-processor;Database=ProcessorDb;User Id=sa;Password=admin@123;
+
+  ui:
+    build:
+      context: ./email.ui
+      dockerfile: Dockerfile
+    ports:
+      - "8083:80"
+
+  rabbitmq:
+    image: rabbitmq:management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+
+  sql-api:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=Admin@657492
+    ports:
+      - "1433:1433"
+
+  sql-processor:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=Admin@657492
+    ports:
+      - "1434:1433"

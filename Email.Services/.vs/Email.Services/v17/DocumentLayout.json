@@ -3,20 +3,24 @@
   "WorkspaceRootPath": "D:\\Email-microservices\\Email.Services\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{3EFBE511-FB7E-49CF-ABBE-3E8E77C95511}|Email.Services.Gateway\\Email.Services.Gateway.csproj|d:\\email-microservices\\email.services\\email.services.gateway\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3EFBE511-FB7E-49CF-ABBE-3E8E77C95511}|Email.Services.Gateway\\Email.Services.Gateway.csproj|solutionrelative:email.services.gateway\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D13407EE-E5B0-4873-848B-33E8BD8A1A59}|Email.Services.API\\Email.Services.API.csproj|d:\\email-microservices\\email.services\\email.services.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{D13407EE-E5B0-4873-848B-33E8BD8A1A59}|Email.Services.API\\Email.Services.API.csproj|solutionrelative:email.services.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7FBEE530-E439-49A6-9707-9262E3D1D658}|Email.Services.Processor\\Email.Services.Processor.csproj|d:\\email-microservices\\email.services\\email.services.processor\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7FBEE530-E439-49A6-9707-9262E3D1D658}|Email.Services.Processor\\Email.Services.Processor.csproj|solutionrelative:email.services.processor\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7FBEE530-E439-49A6-9707-9262E3D1D658}|Email.Services.Processor\\Email.Services.Processor.csproj|d:\\email-microservices\\email.services\\email.services.processor\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{7FBEE530-E439-49A6-9707-9262E3D1D658}|Email.Services.Processor\\Email.Services.Processor.csproj|solutionrelative:email.services.processor\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7FBEE530-E439-49A6-9707-9262E3D1D658}|Email.Services.Processor\\Email.Services.Processor.csproj|d:\\email-microservices\\email.services\\email.services.processor\\services\\loggerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7FBEE530-E439-49A6-9707-9262E3D1D658}|Email.Services.Processor\\Email.Services.Processor.csproj|solutionrelative:email.services.processor\\services\\loggerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D13407EE-E5B0-4873-848B-33E8BD8A1A59}|Email.Services.API\\Email.Services.API.csproj|d:\\email-microservices\\email.services\\email.services.api\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{D13407EE-E5B0-4873-848B-33E8BD8A1A59}|Email.Services.API\\Email.Services.API.csproj|solutionrelative:email.services.api\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3EFBE511-FB7E-49CF-ABBE-3E8E77C95511}|Email.Services.Gateway\\Email.Services.Gateway.csproj|d:\\email-microservices\\email.services\\email.services.gateway\\ocelot.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{3EFBE511-FB7E-49CF-ABBE-3E8E77C95511}|Email.Services.Gateway\\Email.Services.Gateway.csproj|solutionrelative:email.services.gateway\\ocelot.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{D13407EE-E5B0-4873-848B-33E8BD8A1A59}|Email.Services.API\\Email.Services.API.csproj|d:\\email-microservices\\email.services\\email.services.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D13407EE-E5B0-4873-848B-33E8BD8A1A59}|Email.Services.API\\Email.Services.API.csproj|solutionrelative:email.services.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D13407EE-E5B0-4873-848B-33E8BD8A1A59}|Email.Services.API\\Email.Services.API.csproj|d:\\email-microservices\\email.services\\email.services.api\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{D13407EE-E5B0-4873-848B-33E8BD8A1A59}|Email.Services.API\\Email.Services.API.csproj|solutionrelative:email.services.api\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,58 +30,71 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\Email-microservices\\Email.Services\\Email.Services.Processor\\appsettings.json",
+              "RelativeDocumentMoniker": "Email.Services.Processor\\appsettings.json",
+              "ToolTip": "D:\\Email-microservices\\Email.Services\\Email.Services.Processor\\appsettings.json",
+              "RelativeToolTip": "Email.Services.Processor\\appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAACgAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-12-21T06:44:43.946Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\Email-microservices\\Email.Services\\Email.Services.Gateway\\Program.cs",
-              "RelativeDocumentMoniker": "Email.Services.Gateway\\Program.cs",
-              "ToolTip": "D:\\Email-microservices\\Email.Services\\Email.Services.Gateway\\Program.cs",
-              "RelativeToolTip": "Email.Services.Gateway\\Program.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAUAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-07T08:16:53.816Z",
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\Email-microservices\\Email.Services\\Email.Services.API\\appsettings.json",
+              "RelativeDocumentMoniker": "Email.Services.API\\appsettings.json",
+              "ToolTip": "D:\\Email-microservices\\Email.Services\\Email.Services.API\\appsettings.json",
+              "RelativeToolTip": "Email.Services.API\\appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAACZAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-12-21T06:44:20.089Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "LoggerService.cs",
-              "DocumentMoniker": "D:\\Email-microservices\\Email.Services\\Email.Services.Processor\\Services\\LoggerService.cs",
-              "RelativeDocumentMoniker": "Email.Services.Processor\\Services\\LoggerService.cs",
-              "ToolTip": "D:\\Email-microservices\\Email.Services\\Email.Services.Processor\\Services\\LoggerService.cs",
-              "RelativeToolTip": "Email.Services.Processor\\Services\\LoggerService.cs",
-              "ViewState": "AQIAABAAAAAAAAAAAAAuwCEAAABNAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-07T07:45:57.613Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\Email-microservices\\Email.Services\\Email.Services.Processor\\Program.cs",
-              "RelativeDocumentMoniker": "Email.Services.Processor\\Program.cs",
-              "ToolTip": "D:\\Email-microservices\\Email.Services\\Email.Services.Processor\\Program.cs",
-              "RelativeToolTip": "Email.Services.Processor\\Program.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAABAAAAA8AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-07T07:44:15.643Z",
+              "Title": "Dockerfile",
+              "DocumentMoniker": "D:\\Email-microservices\\Email.Services\\Email.Services.API\\Dockerfile",
+              "RelativeDocumentMoniker": "Email.Services.API\\Dockerfile",
+              "ToolTip": "D:\\Email-microservices\\Email.Services\\Email.Services.API\\Dockerfile",
+              "RelativeToolTip": "Email.Services.API\\Dockerfile",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-12-21T06:44:19.002Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "ocelot.json",
-              "DocumentMoniker": "D:\\Email-microservices\\Email.Services\\Email.Services.Gateway\\ocelot.json",
-              "RelativeDocumentMoniker": "Email.Services.Gateway\\ocelot.json",
-              "ToolTip": "D:\\Email-microservices\\Email.Services\\Email.Services.Gateway\\ocelot.json",
-              "RelativeToolTip": "Email.Services.Gateway\\ocelot.json",
-              "ViewState": "AQIAAAIAAAAAAAAAAAAAwBsAAAAnAAAA",
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Email-microservices\\Email.Services\\Email.Services.API\\Program.cs",
+              "RelativeDocumentMoniker": "Email.Services.API\\Program.cs",
+              "ToolTip": "D:\\Email-microservices\\Email.Services\\Email.Services.API\\Program.cs",
+              "RelativeToolTip": "Email.Services.API\\Program.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-21T06:44:15.537Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "D:\\Email-microservices\\Email.Services\\Email.Services.API\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "Email.Services.API\\Properties\\launchSettings.json",
+              "ToolTip": "D:\\Email-microservices\\Email.Services\\Email.Services.API\\Properties\\launchSettings.json",
+              "RelativeToolTip": "Email.Services.API\\Properties\\launchSettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAvAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-11-07T07:37:16.384Z",
+              "WhenOpened": "2024-12-21T06:43:30.987Z",
               "EditorCaption": ""
             }
           ]

@@ -2,11 +2,11 @@
     "Routes": [
         {
             "DownstreamPathTemplate": "/api/Users",
-            "DownstreamScheme": "http",
+            "DownstreamScheme": "api",
             "DownstreamHostAndPorts": [
                 {
                     "Host": "localhost",
-                    "Port": 7240
+                    "Port": 80
                 }
             ],
             "UpstreamPathTemplate": "/api/Users",
@@ -17,8 +17,8 @@
             "DownstreamScheme": "http",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "localhost",
-                    "Port": 7245
+                    "Host": "processor",
+                    "Port": 80
                 }
             ],
             "UpstreamPathTemplate": "/api/Logs",
@@ -29,8 +29,8 @@
             "DownstreamScheme": "http",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "localhost",
-                    "Port": 7245
+                    "Host": "processor",
+                    "Port": 80
                 }
             ],
             "UpstreamPathTemplate": "/api/logsHub",
@@ -41,8 +41,8 @@
             "DownstreamScheme": "http",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "localhost",
-                    "Port": 7245
+                    "Host": "processor",
+                    "Port": 80
                 }
             ],
             "UpstreamPathTemplate": "/api/logsHub/negotiate",
@@ -53,8 +53,8 @@
             "DownstreamScheme": "http",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "localhost",
-                    "Port": 7240
+                    "Host": "processor",
+                    "Port": 80
                 }
             ],
             "UpstreamPathTemplate": "/api/Users/sendEmail",
@@ -63,6 +63,6 @@
 
     ],
     "GlobalConfiguration": {
-        "BaseUrl": "http://localhost:7777/"
+        "BaseUrl": "http://localhost:8080/"
     }
 }
