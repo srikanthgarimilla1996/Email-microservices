@@ -1,4 +1,5 @@
 version: '3.9'
+
 services:
   gateway:
     build:
@@ -6,6 +7,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8080:80"
+    networks:
+      - app-network
 
   api:
     build:
@@ -14,7 +17,9 @@ services:
     ports:
       - "8081:80"
     environment:
-      - ConnectionStrings__DefaultConnection=Server=sql-api;Database=ApiDb;User Id=sa;Password=admin@123;
+      - ConnectionStrings__DefaultConnection=Server=sql-api,1433;Database=Services_EmailAPI;User Id=sa;Password=SG@Admin123;Encrypt=False;TrustServerCertificate=True
+    networks:
+      - app-network
 
   processor:
     build:
@@ -25,7 +30,9 @@ services:
     depends_on:
       - rabbitmq
     environment:
-      - ConnectionStrings__DefaultConnection=Server=sql-processor;Database=ProcessorDb;User Id=sa;Password=admin@123;
+      - ConnectionStrings__DefaultConnection=Server=sql-processor,1433;Database=Services_EmailLogs;User Id=sa;Password=SG@Admin123;Encrypt=False;TrustServerCertificate=True
+    networks:
+      - app-network
 
   ui:
     build:
@@ -33,6 +40,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8083:80"
+    networks:
+      - app-network
 
   rabbitmq:
     image: rabbitmq:management
@@ -42,19 +51,39 @@ services:
     environment:
       RABBITMQ_DEFAULT_USER: guest
       RABBITMQ_DEFAULT_PASS: guest
+    networks:
+      - app-network
 
   sql-api:
-    image: mcr.microsoft.com/mssql/server:2022-latest
-    environment:
-      - ACCEPT_EULA=Y
-      - MSSQL_SA_PASSWORD=Admin@657492
+    image: mcr.microsoft.com/mssql/server:2022-preview-ubuntu-22.04
+    container_name: sql-api
+    hostname: sql-api
     ports:
-      - "1433:1433"
+      - "1500:1433"
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "SG@Admin123"
+      MSSQL_PID: "Evaluation"
+      MSSQL_TLS_VERSION: "1.2"
+      restart: unless-stopped
+    networks:
+      - app-network
 
   sql-processor:
-    image: mcr.microsoft.com/mssql/server:2022-latest
-    environment:
-      - ACCEPT_EULA=Y
-      - MSSQL_SA_PASSWORD=Admin@657492
+    image: mcr.microsoft.com/mssql/server:2022-preview-ubuntu-22.04
+    container_name: sql-processor
+    hostname: sql-processor
     ports:
-      - "1434:1433"
+      - "1501:1433"
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "SG@Admin123"
+      MSSQL_PID: "Evaluation"
+      MSSQL_TLS_VERSION: "1.2"
+      restart: unless-stopped
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

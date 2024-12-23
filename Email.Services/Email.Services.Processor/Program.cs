@@ -22,6 +22,7 @@ builder.Services.AddCors(options =>
               .AllowCredentials(); // Required for SignalR with credentials
     });
 });
+System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12;
 builder.Services.AddDbContext<AppDbContext>(option =>
 {
     option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));

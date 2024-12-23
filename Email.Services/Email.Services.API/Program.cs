@@ -16,6 +16,7 @@ builder.Services.AddCors(options =>
         policy.WithOrigins("*").AllowAnyHeader().AllowAnyMethod();
     });
 });
+System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12;
 builder.Services.AddDbContext<AppDbContext>(option =>
 {
     option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
