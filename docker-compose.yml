@@ -1,58 +1,6 @@
 version: '3.9'
 
 services:
-  gateway:
-    build:
-      context: ./Email.Services/Email.Services.Gateway
-      dockerfile: Dockerfile
-    ports:
-      - "8080:80"
-    networks:
-      - app-network
-
-  api:
-    build:
-      context: ./Email.Services
-      dockerfile: Email.Services.API/Dockerfile
-    ports:
-      - "8081:80"
-    environment:
-      - ConnectionStrings__DefaultConnection=Server=sql-api,1433;Database=Services_EmailAPI;User Id=sa;Password=SG@Admin123;Encrypt=False;TrustServerCertificate=True
-    networks:
-      - app-network
-
-  processor:
-    build:
-      context: ./Email.Services
-      dockerfile: Email.Services.Processor/Dockerfile
-    ports:
-    - "8082:80"
-    depends_on:
-      - rabbitmq
-    environment:
-      - ConnectionStrings__DefaultConnection=Server=sql-processor,1433;Database=Services_EmailLogs;User Id=sa;Password=SG@Admin123;Encrypt=False;TrustServerCertificate=True
-    networks:
-      - app-network
-
-  ui:
-    build:
-      context: ./email.ui
-      dockerfile: Dockerfile
-    ports:
-      - "8083:80"
-    networks:
-      - app-network
-
-  rabbitmq:
-    image: rabbitmq:management
-    ports:
-      - "5672:5672"
-      - "15672:15672"
-    environment:
-      RABBITMQ_DEFAULT_USER: guest
-      RABBITMQ_DEFAULT_PASS: guest
-    networks:
-      - app-network
 
   sql-api:
     image: mcr.microsoft.com/mssql/server:2022-preview-ubuntu-22.04
@@ -81,6 +29,63 @@ services:
       MSSQL_PID: "Evaluation"
       MSSQL_TLS_VERSION: "1.2"
       restart: unless-stopped
+    networks:
+      - app-network
+  
+  gateway:
+    build:
+      context: ./Email.Services/Email.Services.Gateway
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
+    environment:
+      - ASPNETCORE_URLS=http://+:8081
+    networks:
+      - app-network
+
+  api:
+    build:
+      context: ./Email.Services
+      dockerfile: Email.Services.API/Dockerfile
+    ports:
+      - "8082:8082"
+    environment:
+      - ASPNETCORE_URLS=http://+:8082
+      - ConnectionStrings__DefaultConnection=Server=sql-api,1433;Database=Services_EmailAPI;User Id=sa;Password=SG@Admin123;Encrypt=False;TrustServerCertificate=True
+    networks:
+      - app-network
+
+  processor:
+    build:
+      context: ./Email.Services
+      dockerfile: Email.Services.Processor/Dockerfile
+    ports:
+    - "8083:8083"
+    depends_on:
+      - rabbitmq
+    environment:
+      - ASPNETCORE_URLS=http://+:8083
+      - ConnectionStrings__DefaultConnection=Server=sql-processor,1433;Database=Services_EmailLogs;User Id=sa;Password=SG@Admin123;Encrypt=False;TrustServerCertificate=True
+    networks:
+      - app-network
+
+  ui:
+    build:
+      context: ./email.ui
+      dockerfile: Dockerfile
+    ports:
+      - "8084:8084"
+    networks:
+      - app-network
+
+  rabbitmq:
+    image: rabbitmq:management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
     networks:
       - app-network
 

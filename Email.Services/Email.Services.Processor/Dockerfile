@@ -1,8 +1,8 @@
 # Base image for the runtime
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 WORKDIR /app
-EXPOSE 80
-EXPOSE 443
+EXPOSE 8083
+ENV ASPNETCORE_URLS=http://+:8083
 
 # Build image using .NET SDK
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build

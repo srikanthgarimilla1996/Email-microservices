@@ -25,7 +25,7 @@ ENV TZ=Europe/Zurich
 ENV VERSION_NUMBER=$VERSION_NUMBER_ARG
 
 # Copies the custom NGINX configuration file you've written in your project to the right location in your Docker image.
-# COPY nginx.conf /etc/nginx/nginx.conf
+COPY nginx.conf /etc/nginx/nginx.conf
 
 # These commands will set permissions for various NGINX locations to allow the nginx user to function correctly.
 RUN touch /var/run/nginx.pid && \
@@ -42,7 +42,7 @@ USER nginx
 COPY --from=build /app/dist/email.ui/browser/ /usr/share/nginx/html
 
 # This makes port 80 available to your host machine.
-EXPOSE 80
+EXPOSE 8084
 
 # This is starting NGINX and making sure it stays running. The "-g 'daemon off;'" part is grabbing the global configuration to modify it.
 CMD ["nginx", "-g", "daemon off;"]
