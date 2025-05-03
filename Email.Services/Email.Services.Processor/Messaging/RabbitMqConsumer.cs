@@ -24,6 +24,8 @@ namespace Email.Services.Processor.Messaging
             {
                 HostName = _rabbitMqOptions.Host,
                 Port = _rabbitMqOptions.Port,
+                UserName = _rabbitMqOptions.UserName,
+                Password = _rabbitMqOptions.Password,
             };
             var connection = factory.CreateConnection();
             _channel = connection.CreateModel();

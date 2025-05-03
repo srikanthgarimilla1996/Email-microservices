@@ -1,3 +1,6 @@
+@import 'ag-grid-community/styles/ag-grid.css';
+@import 'ag-grid-community/styles/ag-theme-quartz.css';
+
 .ag-theme-quartz {
     /* Changes the color of the grid text */
       --ag-foreground-color: rgb(14, 68, 145);

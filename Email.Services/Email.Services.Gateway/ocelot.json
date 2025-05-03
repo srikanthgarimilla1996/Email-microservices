@@ -5,8 +5,9 @@
             "DownstreamScheme": "http",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "localhost",
-                    "Port": 7240
+                    //"Host": "localhost",
+                    "Host": "api",
+                    "Port": 8082
                 }
             ],
             "UpstreamPathTemplate": "/api/Users",
@@ -17,8 +18,9 @@
             "DownstreamScheme": "http",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "localhost",
-                    "Port": 7245
+                    //"Host": "localhost",
+                    "Host": "processor",
+                    "Port": 8083
                 }
             ],
             "UpstreamPathTemplate": "/api/Logs",
@@ -29,8 +31,9 @@
             "DownstreamScheme": "http",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "localhost",
-                    "Port": 7245
+                    //"Host": "localhost",
+                    "Host": "processor",
+                    "Port": 8083
                 }
             ],
             "UpstreamPathTemplate": "/api/logsHub",
@@ -41,8 +44,9 @@
             "DownstreamScheme": "http",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "localhost",
-                    "Port": 7245
+                    //"Host": "localhost",
+                    "Host": "processor",
+                    "Port": 8083
                 }
             ],
             "UpstreamPathTemplate": "/api/logsHub/negotiate",
@@ -53,8 +57,9 @@
             "DownstreamScheme": "http",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "localhost",
-                    "Port": 7240
+                    //"Host": "localhost",
+                    "Host": "api",
+                    "Port": 8082
                 }
             ],
             "UpstreamPathTemplate": "/api/Users/sendEmail",
@@ -63,6 +68,8 @@
 
     ],
     "GlobalConfiguration": {
-        "BaseUrl": "http://localhost:7777/"
+        // The below is for running locally
+        //"BaseUrl": "http://localhost:8081/"
+       "BaseUrl":"http://gateway:8081"
     }
 }

@@ -16,9 +16,15 @@ builder.Services.AddCors(options =>
         policy.WithOrigins("*").AllowAnyHeader().AllowAnyMethod();
     });
 });
+System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12;
 builder.Services.AddDbContext<AppDbContext>(option =>
 {
-    option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+    option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"),
+        sqlServerOptions => sqlServerOptions.EnableRetryOnFailure(
+            maxRetryCount:5,
+            maxRetryDelay:TimeSpan.FromSeconds(10),
+            errorNumbersToAdd:null
+            ));
 });
 IMapper mapper = MappingConfig.RegisterMaps().CreateMapper();
 builder.Services.AddSingleton(mapper);
