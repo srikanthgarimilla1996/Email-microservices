@@ -1,5 +1,6 @@
 version: '3.9'
-
+volumes:
+  rabbitmq-data: # Ensures permissions persist
 services:
 
   sql-api:
@@ -8,6 +9,11 @@ services:
     hostname: sql-api
     ports:
       - "1500:1433"
+    healthcheck:
+      test: /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P "SG@Admin123" -Q "SELECT 1" || exit 1
+      interval: 5s
+      timeout: 5s
+      retries: 10  # ~50s total wait time
     environment:
       ACCEPT_EULA: "Y"
       MSSQL_SA_PASSWORD: "SG@Admin123"
@@ -23,12 +29,36 @@ services:
     hostname: sql-processor
     ports:
       - "1501:1433"
+    healthcheck:
+      test: /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P "SG@Admin123" -Q "SELECT 1" || exit 1
+      interval: 5s
+      timeout: 5s
+      retries: 10  # ~50s total wait time
     environment:
       ACCEPT_EULA: "Y"
       MSSQL_SA_PASSWORD: "SG@Admin123"
       MSSQL_PID: "Evaluation"
       MSSQL_TLS_VERSION: "1.2"
       restart: unless-stopped
+    networks:
+      - app-network
+  
+  rabbitmq:
+    image: rabbitmq:management
+    ports:
+      - "5673:5672"
+      - "15673:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+      RABBITMQ_ERLANG_COOKIE: my-secret-cookie  # Prevents permission issues
+    volumes:
+      - rabbitmq-data:/var/lib/rabbitmq  # Persistent storage
+    healthcheck:
+      test: rabbitmq-diagnostics -q ping
+      interval: 5s
+      timeout: 5s
+      retries: 10
     networks:
       - app-network
   
@@ -49,6 +79,9 @@ services:
       dockerfile: Email.Services.API/Dockerfile
     ports:
       - "8082:8082"
+    depends_on:
+      sql-api:
+        condition: service_healthy  # ⭐️ Critical: Wait for SQL to be ready
     environment:
       - ASPNETCORE_URLS=http://+:8082
       - ConnectionStrings__DefaultConnection=Server=sql-api,1433;Database=Services_EmailAPI;User Id=sa;Password=SG@Admin123;Encrypt=False;TrustServerCertificate=True
@@ -62,7 +95,10 @@ services:
     ports:
     - "8083:8083"
     depends_on:
-      - rabbitmq
+      sql-processor:
+        condition: service_healthy  # ⭐️ Critical: Wait for SQL to be ready
+      rabbitmq:
+        condition: service_healthy
     environment:
       - ASPNETCORE_URLS=http://+:8083
       - ConnectionStrings__DefaultConnection=Server=sql-processor,1433;Database=Services_EmailLogs;User Id=sa;Password=SG@Admin123;Encrypt=False;TrustServerCertificate=True
@@ -78,16 +114,7 @@ services:
     networks:
       - app-network
 
-  rabbitmq:
-    image: rabbitmq:management
-    ports:
-      - "5672:5672"
-      - "15672:15672"
-    environment:
-      RABBITMQ_DEFAULT_USER: guest
-      RABBITMQ_DEFAULT_PASS: guest
-    networks:
-      - app-network
+
 
 networks:
   app-network:

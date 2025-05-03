@@ -5,7 +5,8 @@
             "DownstreamScheme": "http",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "localhost",
+                    //"Host": "localhost",
+                    "Host": "api",
                     "Port": 8082
                 }
             ],
@@ -17,7 +18,8 @@
             "DownstreamScheme": "http",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "localhost",
+                    //"Host": "localhost",
+                    "Host": "processor",
                     "Port": 8083
                 }
             ],
@@ -29,7 +31,8 @@
             "DownstreamScheme": "http",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "localhost",
+                    //"Host": "localhost",
+                    "Host": "processor",
                     "Port": 8083
                 }
             ],
@@ -41,7 +44,8 @@
             "DownstreamScheme": "http",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "localhost",
+                    //"Host": "localhost",
+                    "Host": "processor",
                     "Port": 8083
                 }
             ],
@@ -53,7 +57,8 @@
             "DownstreamScheme": "http",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "localhost",
+                    //"Host": "localhost",
+                    "Host": "api",
                     "Port": 8082
                 }
             ],
@@ -64,7 +69,7 @@
     ],
     "GlobalConfiguration": {
         // The below is for running locally
-        "BaseUrl": "http://localhost:8081/"
-       //"BaseUrl":"http://gateway:8081"
+        //"BaseUrl": "http://localhost:8081/"
+       "BaseUrl":"http://gateway:8081"
     }
 }

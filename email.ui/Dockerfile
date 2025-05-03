@@ -4,6 +4,7 @@ FROM node:20.12-alpine3.18 as build
 # Setting the working directory in the Docker image.
 WORKDIR /app
 
+RUN npm cache clean --force
 # Copying the package.json and package-lock.json files into the image.
 COPY package.json package-lock.json ./
 
