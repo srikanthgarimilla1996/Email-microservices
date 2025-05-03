@@ -1,0 +1,121 @@
+version: '3.9'
+volumes:
+  rabbitmq-data: # Ensures permissions persist
+services:
+
+  sql-api:
+    image: mcr.microsoft.com/mssql/server:2022-preview-ubuntu-22.04
+    container_name: sql-api
+    hostname: sql-api
+    ports:
+      - "1500:1433"
+    healthcheck:
+      test: /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P "SG@Admin123" -Q "SELECT 1" || exit 1
+      interval: 5s
+      timeout: 5s
+      retries: 10  # ~50s total wait time
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "SG@Admin123"
+      MSSQL_PID: "Evaluation"
+      MSSQL_TLS_VERSION: "1.2"
+      restart: unless-stopped
+    networks:
+      - app-network
+
+  sql-processor:
+    image: mcr.microsoft.com/mssql/server:2022-preview-ubuntu-22.04
+    container_name: sql-processor
+    hostname: sql-processor
+    ports:
+      - "1501:1433"
+    healthcheck:
+      test: /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P "SG@Admin123" -Q "SELECT 1" || exit 1
+      interval: 5s
+      timeout: 5s
+      retries: 10  # ~50s total wait time
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "SG@Admin123"
+      MSSQL_PID: "Evaluation"
+      MSSQL_TLS_VERSION: "1.2"
+      restart: unless-stopped
+    networks:
+      - app-network
+  
+  rabbitmq:
+    image: rabbitmq:management
+    ports:
+      - "5673:5672"
+      - "15673:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+      RABBITMQ_ERLANG_COOKIE: my-secret-cookie  # Prevents permission issues
+    volumes:
+      - rabbitmq-data:/var/lib/rabbitmq  # Persistent storage
+    healthcheck:
+      test: rabbitmq-diagnostics -q ping
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    networks:
+      - app-network
+  
+  gateway:
+    build:
+      context: ./Email.Services/Email.Services.Gateway
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
+    environment:
+      - ASPNETCORE_URLS=http://+:8081
+    networks:
+      - app-network
+
+  api:
+    build:
+      context: ./Email.Services
+      dockerfile: Email.Services.API/Dockerfile
+    ports:
+      - "8082:8082"
+    depends_on:
+      sql-api:
+        condition: service_healthy  # ⭐️ Critical: Wait for SQL to be ready
+    environment:
+      - ASPNETCORE_URLS=http://+:8082
+      - ConnectionStrings__DefaultConnection=Server=sql-api,1433;Database=Services_EmailAPI;User Id=sa;Password=SG@Admin123;Encrypt=False;TrustServerCertificate=True
+    networks:
+      - app-network
+
+  processor:
+    build:
+      context: ./Email.Services
+      dockerfile: Email.Services.Processor/Dockerfile
+    ports:
+    - "8083:8083"
+    depends_on:
+      sql-processor:
+        condition: service_healthy  # ⭐️ Critical: Wait for SQL to be ready
+      rabbitmq:
+        condition: service_healthy
+    environment:
+      - ASPNETCORE_URLS=http://+:8083
+      - ConnectionStrings__DefaultConnection=Server=sql-processor,1433;Database=Services_EmailLogs;User Id=sa;Password=SG@Admin123;Encrypt=False;TrustServerCertificate=True
+    networks:
+      - app-network
+
+  ui:
+    build:
+      context: ./email.ui
+      dockerfile: Dockerfile
+    ports:
+      - "8084:8084"
+    networks:
+      - app-network
+
+
+
+networks:
+  app-network:
+    driver: bridge

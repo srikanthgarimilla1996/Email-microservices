@@ -13,7 +13,9 @@
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
-      "applicationUrl": "http://localhost:5216",
+      // The below localhost is for running locally
+      "applicationUrl": "http://localhost:8081",
+      //"applicationUrl": "http://gateway:8081",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
@@ -21,8 +23,10 @@
     "https": {
       "commandName": "Project",
       "dotnetRunMessages": true,
-      "launchBrowser": true,
-      "applicationUrl": "http://localhost:7777",
+      "launchBrowser": true, 
+      // The below localhost is for running locally
+      "applicationUrl": "http://localhost:8081",
+      //"applicationUrl": "http://gateway:8081",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

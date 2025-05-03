@@ -60,7 +60,10 @@ export class SendEmailComponent implements OnInit{
         }
         
       }
-    })
+    });
+
+    this.message.value = "";
+    this.selectedUsers.value = [];
   }
 
 }
