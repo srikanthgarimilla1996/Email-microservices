@@ -8,10 +8,10 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" [ngClass]="{'active': activeLink === 'sendEmail'}" href="/sendEmail" (click)="setActive('sendEmail')">Send Email</a>
+          <a class="nav-link"  routerLink="/sendEmail" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" >Send Email</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [ngClass]="{'active': activeLink === 'logs'}" href="/view-logs"(click)="setActive('logs')">View Logs</a>
+          <a class="nav-link" routerLink="/view-logs" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">View Logs</a>
         </li>
       </ul>
     </div>
