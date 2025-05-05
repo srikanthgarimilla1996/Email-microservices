@@ -6,7 +6,8 @@ import { HttpClient } from "@angular/common/http";
     providedIn:'root'
 })
 export class AppService{
-    public url = 'http://localhost:8081/api/'
+    public url = 'http://172.25.25.60:8081/api/' // For deployment change this to the ip v4 address
+    // public url = 'http://localhost:8081/api/' // For local running use this
     constructor(private http:HttpClient){
 
     }
